@@ -19,7 +19,7 @@ prompt_template = PromptTemplate(
 
 chain = LLMChain(llm=llm, prompt=prompt_template)
 
-def generate_story_arc(prompt):
+def generate_story(prompt):
     response = chain.run({"prompt": prompt})
     return response.strip()
 
@@ -31,8 +31,8 @@ if st.button("Create a Story"):
     if prompt:
         with st.spinner("Writing a science fiction story..."):
             try:
-                story_arc = generate_story_arc(prompt)
-                st.write(story_arc)
+                story = generate_story(prompt)
+                st.write(story)
             except Exception as e:
                 st.error(f"Error generating story: {e}")
     else:
